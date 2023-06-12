@@ -4,8 +4,30 @@ import Image from 'next/image'
 import logoImg from '../../public/logo.svg'
 import { Input } from '../components/ui/Input/input'
 import { Button } from '../components/ui/Button/button'
+import Link from 'next/link'
+import {AuthContext} from '../contexts/AuthContext'
+import { FormEvent, useContext, useState } from 'react'
 
 export default function Home() {
+
+  const {signIn} = useContext(AuthContext);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');	
+  const [loading, setLoading] = useState('');
+
+
+  async function handleLogin(event: FormEvent) {
+    event.preventDefault();
+    
+    let data = {
+      email: email,
+      password: password	
+    }
+
+    signIn(data);
+  }
+
   return (
     <>
       <Head>
@@ -16,21 +38,30 @@ export default function Home() {
       <div className={styles.containerCenter}>
         <Image src={logoImg} alt = "Logo Sujeito Pizzaria"/>
 
-          <form className={styles.login}>
-            <Input placeholder='Digite seu E-mail'
-              type='text'/>
+          <div className={styles.login}>
+            <form onSubmit={handleLogin}>
+              <Input placeholder='Digite seu E-mail'
+                type='text'
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-            <Input placeholder='Digite sua Senha'
-              type='password'/>
+              <Input placeholder='Digite sua Senha'
+                type='password'
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-            <Button type='submit'
-            Loading={false}>
-              Acessar
-            </Button>
+              <Button type='submit'
+              Loading={false}>
+                Acessar
+              </Button>
 
-          </form>
+            </form>
 
-        <a className={styles.text}>Não possui uma conta? Cadastre-se</a>
+          </div>
+
+          <Link href="/singup" className={styles.text}>
+            Não possui uma conta? Cadastre-se
+          </Link>
 
       </div>
     </>

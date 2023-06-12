@@ -6,7 +6,7 @@ interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement>{};
 
 export function Input({...rest}:InputProps){
     return (
-        <input className={styles.input} {...rest} type="text"/>
+        <input className={styles.input} {...rest}/>
     )
 }
 
