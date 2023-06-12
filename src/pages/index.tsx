@@ -15,8 +15,8 @@ export default function Home() {
       </Head>
       <div className={styles.containerCenter}>
         <Image src={logoImg} alt = "Logo Sujeito Pizzaria"/>
-        <div className={styles.login}>
-          <form>
+
+          <form className={styles.login}>
             <Input placeholder='Digite seu E-mail'
               type='text'/>
 
@@ -29,7 +29,9 @@ export default function Home() {
             </Button>
 
           </form>
-        </div>
+
+        <a className={styles.text}>Não possui uma conta? Cadastre-se</a>
+
       </div>
     </>
   )
