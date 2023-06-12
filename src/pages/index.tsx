@@ -14,18 +14,27 @@ export default function Home() {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');	
-  const [loading, setLoading] = useState('');
+  const [loading, setLoading] = useState(false);
 
 
   async function handleLogin(event: FormEvent) {
     event.preventDefault();
     
+    if (email === '' || password === '') {
+      alert('Preencha os dados');
+      return;
+    }
+
+    setLoading(true);
+
     let data = {
       email: email,
       password: password	
     }
 
-    signIn(data);
+    await signIn(data);
+
+    setLoading(false)
   }
 
   return (

@@ -1,3 +1,4 @@
+
 .containerCenter{
   min-height: 100vh;
   display: flex;
@@ -16,7 +17,12 @@
   flex-direction: column;
   padding: 2rem 1.5rem;
 
-  form {
+  h1{
+    color: var(--white);
+    padding-bottom: 1rem;
+  }
+
+  form{
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -26,15 +32,17 @@
     height: 40px;
     font-size: 1.2rem;
   }
+
 }
 
 .text{
   margin-top: 1rem;
   color: var(--white);
-  cursor:pointer;
+  cursor: pointer;
 }
 
-@media(max-width:620px){
+
+@media (max-width: 620px) {
   .login{
     width: 90%;
   }

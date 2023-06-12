@@ -1,4 +1,4 @@
-import { Router } from 'next/router';
+import Router from 'next/router'; 
 import {createContext, ReactNode, useState} from 'react';
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from '../services/apiClient';
@@ -68,8 +68,8 @@ export function AuthProvider({children}: AuthProviderProps) {
             //Redirecionar o user
             Router.push('/dashboard');
             
-        } catch {
-            console.log();
+        } catch (error){
+            console.log(error);
             console.log("Erro")
         }
     }
