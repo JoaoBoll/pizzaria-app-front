@@ -7,6 +7,7 @@ import { Button } from '../../components/ui/Button/button'
 import Link from 'next/link'
 import { useState, FormEvent, useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import { toast } from 'react-toastify'
 
 export default function SingUp() {
 
@@ -22,7 +23,7 @@ export default function SingUp() {
     event.preventDefault();
 
     if (name === '' || email === '' || password === '') {
-      alert('Preencha todos os campos');
+      toast.warning('Preencha todos os campos');
       return;
     }
 

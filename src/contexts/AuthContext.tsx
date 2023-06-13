@@ -2,6 +2,7 @@ import Router from 'next/router';
 import {createContext, ReactNode, useState} from 'react';
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from '../services/apiClient';
+import {toast} from 'react-toastify'
 
 type AuthContextData = {
     user: UserProps;
@@ -71,10 +72,13 @@ export function AuthProvider({children}: AuthProviderProps) {
             //Setar o token padrão Header para prox requisições
             api.defaults.headers['Authorization'] = `Bearer ${token}`
 
+            toast.success('Logado com sucesso!')
+
             //Redirecionar o user
             Router.push('/dashboard');
             
         } catch (error){
+            toast.error('Ocorreu um erro ao fazer login')
             console.log(error);
             console.log("Erro")
         }
