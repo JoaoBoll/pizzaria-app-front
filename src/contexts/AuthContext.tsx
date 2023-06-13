@@ -3,6 +3,7 @@ import {createContext, ReactNode, useState} from 'react';
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from '../services/apiClient';
 import {toast} from 'react-toastify'
+import {useEffect} from 'react'
 
 type AuthContextData = {
     user: UserProps;
@@ -48,6 +49,25 @@ export function AuthProvider({children}: AuthProviderProps) {
 
     const [user, setUser] = useState<UserProps>();
     const isAuthenticated = !!user;
+
+    useEffect(() => {
+        //tentando pegar algo no cookie
+        const { '@nextauth.token': token } = parseCookies();
+
+        if (token) {
+            api.get('/me').then(response =>{
+                const {id, name, email} = response.data;
+                setUser({
+                    id,
+                    name,
+                    email
+                });
+            }).catch(() =>{
+                //Caso houver problema, desconectar o usuári.
+                signOut();
+            })
+        }
+    }, [])
 
     async function signIn({email, password}: SignInProps) {
         try{
