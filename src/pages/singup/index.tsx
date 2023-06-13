@@ -34,9 +34,21 @@ export default function SingUp() {
       password
     }
 
-    await signUp(data);
+    try {
 
-    setLoading(false);
+      console.log(data);
+      await signUp(data);
+
+    } catch(err) {
+
+      setLoading(false);
+
+      console.log('Erro requisição');
+      console.log(err);
+
+    } finally {
+      setLoading(false);
+    }
 
   }
 
