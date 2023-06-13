@@ -5,9 +5,12 @@ import logoImg from '../../../public/logo.svg'
 import { Input } from '../../components/ui/Input/input'
 import { Button } from '../../components/ui/Button/button'
 import Link from 'next/link'
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 export default function SingUp() {
+
+  const {signUp} = useContext(AuthContext);;
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,6 +27,16 @@ export default function SingUp() {
     }
 
     setLoading(true);
+
+    let data = {
+      name,
+      email,
+      password
+    }
+
+    await signUp(data);
+
+    setLoading(false);
 
   }
 
@@ -44,17 +57,17 @@ export default function SingUp() {
             <Input placeholder='Digite seu Nome'
               type='text'
               value={name}
-              onChange={(e) => setName(e.target.value)}/>
+              onChange={(e) => setName(e.target.value)} />
 
             <Input placeholder='Digite seu E-mail'
               type='text'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}/>
+              onChange={(e) => setEmail(e.target.value)} />
 
             <Input placeholder='Digite sua Senha'
               type='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}/>
+              onChange={(e) => setPassword(e.target.value)} />
 
             <Button type='submit'
               Loading={loading}>
