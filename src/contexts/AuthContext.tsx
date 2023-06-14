@@ -1,4 +1,4 @@
-import Router from 'next/router'; 
+ import Router from 'next/router';
 import {createContext, ReactNode, useState} from 'react';
 import { destroyCookie, setCookie, parseCookies } from 'nookies'
 import { api } from '../services/apiClient';
