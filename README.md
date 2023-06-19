@@ -1,7 +1,8 @@
 ## Como rodar o projeto:
 
-Primeiro você deve rodar o sistema BackEnd do mesmo:
-[pizzaria-app-back](https://github.com/JoaoBoll/pizzaria-app-back)
+Recomanda-se o uso desta aplicação com o projeto back-end rodando simultaneamente.
+
+O projeto Back-End encontra-se [AQUI](https://github.com/JoaoBoll/pizzaria-app-back)
 
 ## Rodar os comandos:
 ```bash
